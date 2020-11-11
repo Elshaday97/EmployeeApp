@@ -1,25 +1,26 @@
 import React from 'react';
-import logo from './logo.svg';
+import {Route} from 'react-router-dom';
+import {ThemeProvider} from "styled-components"
 import './App.css';
+import { NavBar } from './components/NavBar';
+import Wrapper from './components/StyledComponents/Wrapper';
+import CreateEmployee from "./components/CreateEmployee";
+import UpdateEmployee from "./components/UpdateEmployee";
+import EmployeeList from "./components/EmployeeList";
+const theme = {
+  font: 'Open sans'
+}
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={theme}> 
+      <NavBar />
+      <Wrapper>
+      <Route path="/create-employee" component={CreateEmployee} />
+      <Route path="/update/:id" render={ (props) => (<UpdateEmployee {...props} />)}/>
+      <Route exact path="/" component={EmployeeList} />
+      </Wrapper>
+    </ThemeProvider>
   );
 }
 

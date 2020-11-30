@@ -19,8 +19,7 @@ app.use(cors());
 app.use(express.json()); //parse JSON
 
 //setup DB connection
-const uri =
-  " mongodb+srv://new-user-mac:hdFtNkQ7nOnU5Ply@cluster0.atwct.gcp.mongodb.net/EmployeeDB?retryWrites=true&w=majority";
+const uri = process.env.ATLAS_URI
 mongoose.connect(uri, {
   useNewUrlParser: true,
   useCreateIndex: true,
